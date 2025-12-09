@@ -73,11 +73,10 @@ export default function ResponsiveAppBar() {
 	);
 
 	return (
-
 		<>
 			<AppBar position='relative' component="nav" sx={{ color: 'var(--color-primary)', backgroundColor: 'var(--color-accent)' }}>
 				<Toolbar>
-					{/* 🔑 1. Mobile Menu Button (Visible on small screens, hidden on medium and up) */}
+					{/* Mobile Menu Button (Visible on small screens, hidden on medium and up) */}
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -88,7 +87,6 @@ export default function ResponsiveAppBar() {
 						<MenuIcon />
 					</IconButton>
 
-					{/* Logo/Title (Visible on all screens) */}
 					<Typography
 						variant="h6"
 						sx={{
@@ -101,7 +99,7 @@ export default function ResponsiveAppBar() {
 						Easy Gen Task
 					</Typography>
 
-					{/* 🔑 2. Desktop Navigation Links (Hidden on small screens, visible on medium and up) */}
+					{/* Desktop Navigation Links (Hidden on small screens, visible on medium and up) */}
 					<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 						{navItems.map((item) => (
 							<Button key={item.name} sx={{ color: '#fff' }} component={RouterLink} to={item.path}>
@@ -122,9 +120,8 @@ export default function ResponsiveAppBar() {
 				</Toolbar>
 			</AppBar>
 
-			{/* 🔑 3. Mobile Drawer Component */}
+			{/* Mobile Drawer Component */}
 			<Drawer
-				// The container is used to set the initial width
 				variant="temporary"
 				open={mobileOpen}
 				onClose={handleDrawerToggle}
@@ -137,7 +134,6 @@ export default function ResponsiveAppBar() {
 			>
 				{drawer}
 			</Drawer>
-			{/* This Box is just to push content down below the fixed AppBar */}
 		</>
 	);
 }

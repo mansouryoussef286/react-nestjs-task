@@ -18,7 +18,6 @@ export default function LandingPage() {
 				</h1>
 			</div>
 		</div>
-
 	)
 }
 

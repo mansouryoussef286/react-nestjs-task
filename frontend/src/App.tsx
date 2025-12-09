@@ -10,6 +10,5 @@ export default function App() {
         <AppWrapper />
       </UserServiceProvider>
     </div>
-
   );
 }

@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./home.scss";
 import { UserServiceContext } from "../../context/userService.provider";
 import { api } from "../../api/api";
