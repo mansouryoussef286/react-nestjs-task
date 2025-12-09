@@ -6,17 +6,20 @@ import { Request } from 'express';
 import { AccountModels } from '@App/Features/Account/Account.Models';
 
 @Injectable()
-export class RefreshJwtStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
-	constructor(private readonly AppConfig: AppConfig) {
-		super({
-			jwtFromRequest: ExtractJwt.fromBodyField('RefreshToken'),
-			ignoreExpiration: false,
-			secretOrKey: AppConfig.Config.Auth.Jwt.Key,
-			passReqToCallback: true
-		});
-	}
+export class RefreshJwtStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-refresh',
+) {
+  constructor(private readonly AppConfig: AppConfig) {
+    super({
+      jwtFromRequest: ExtractJwt.fromBodyField('refreshToken'),
+      ignoreExpiration: false,
+      secretOrKey: AppConfig.Config.Auth.Jwt.Key,
+      passReqToCallback: true,
+    });
+  }
 
-	async validate(req: Request, user: AccountModels.JwtModel) {
-		return user;
-	}
+  async validate(req: Request, user: AccountModels.JwtModel) {
+    return user;
+  }
 }

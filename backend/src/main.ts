@@ -38,7 +38,10 @@ async function bootstrap() {
   //#endregion
 
   app.enableCors({
-    origin: '*',
+    origin: config?.Server.FrontEndHost, // ⬅️ Specify the exact origin
+    credentials: true, // ⬅️ You must include this if the frontend sends cookies
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
   });
 
   await app.listen(config!.Server.Port).then(async () => {

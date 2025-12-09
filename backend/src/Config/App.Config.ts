@@ -11,7 +11,7 @@ export interface Config {
   };
   Database: {
     Uri: string;
-    Name: string;
+    name: string;
   };
   Auth: {
     Jwt: {

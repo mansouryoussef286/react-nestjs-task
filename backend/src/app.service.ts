@@ -11,6 +11,6 @@ export class AppService {
 
   getPrivateInfo(): string {
     const currentUser = this.UserHelper.GetCurrentUser();
-    return `This is private info only for user email ${currentUser.Email}`;
+    return `This is private info only for user email ${currentUser.email}`;
   }
 }

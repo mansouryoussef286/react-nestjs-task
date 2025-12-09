@@ -9,7 +9,7 @@ export const mongooseOptions = {
     const Config = configService.get<Config>('Config');
     return {
       uri: Config!.Database.Uri,
-      dbName: Config!.Database.Name,
+      dbName: Config!.Database.name,
       retryAttempts: 1,
       retryDelay: 1000,
     };

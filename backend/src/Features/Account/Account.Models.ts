@@ -3,32 +3,32 @@ import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
 
 export namespace AccountModels {
   export class CurrentUser {
-    Name!: string;
-    Email!: string;
+    name!: string;
+    email!: string;
   }
 
   export class JwtModel {
-    Email!: string;
+    email!: string;
   }
 
   export class SigninReqModel {
     @IsEmail()
     @ApiProperty()
-    Email!: string;
+    email!: string;
     @MinLength(8)
     @ApiProperty()
-    Password!: string;
+    password!: string;
   }
 
   export class SignupReqModel {
     @IsEmail()
     @ApiProperty()
-    Email!: string;
+    email!: string;
 
     @IsString()
     @MinLength(3)
     @ApiProperty()
-    Name: string;
+    name!: string;
 
     @IsString()
     @MinLength(8)
@@ -41,40 +41,40 @@ export namespace AccountModels {
       },
     )
     @ApiProperty()
-    Password!: string;
+    password!: string;
   }
 
   export class RefreshTokenReqModel {
     @IsEmail()
     @ApiProperty()
-    Email!: string;
+    email!: string;
 
     @IsString()
     @ApiProperty()
-    RefreshToken!: string;
+    refreshToken!: string;
   }
 
   export class SigninResModel {
     constructor(
-      public AccessToken: string,
-      public RefreshToken: string,
-      public CurrentUser: CurrentUser,
+      public accessToken: string,
+      public refreshToken: string,
+      public currentUser: CurrentUser,
     ) {}
   }
 
   export class SignupResModel {
     constructor(
-      public AccessToken: string,
-      public RefreshToken: string,
-      public CurrentUser: CurrentUser,
+      public accessToken: string,
+      public refreshToken: string,
+      public currentUser: CurrentUser,
     ) {}
   }
 
   export class RefreshTokenResModel {
     constructor(
-      public AccessToken: string,
-      public RefreshToken: string,
-      public CurrentUser: CurrentUser,
+      public accessToken: string,
+      public refreshToken: string,
+      public currentUser: CurrentUser,
     ) {}
   }
 }

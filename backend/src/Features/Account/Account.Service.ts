@@ -44,18 +44,22 @@ export class AccountService {
   async Signup(
     signupReqModel: AccountModels.SignupReqModel,
   ): Promise<AccountModels.SigninResModel> {
-    let user = await this.usersService.findByEmail(signupReqModel.Email);
+    let user = await this.usersService.findByEmail(signupReqModel.email);
     const SignupResult = this.CanSignup(user);
+
     if (!SignupResult.Success) {
+      // we should handle all signups as if its working
+      // to respond with "activation mail has been sent to your email"
+      // to avouid user enumeration attacks
       throw new AccountException(SignupResult.ErrorMsg);
     }
     const hashedPassword = await this.passwordService.hashPassword(
-      signupReqModel.Password,
+      signupReqModel.password,
     );
 
     user = await this.usersService.create({
-      email: signupReqModel.Email,
-      name: signupReqModel.Name,
+      email: signupReqModel.email,
+      name: signupReqModel.name,
       password: hashedPassword,
     });
 
@@ -72,7 +76,7 @@ export class AccountService {
   async RefreshAccessToken(
     model: AccountModels.RefreshTokenReqModel,
   ): Promise<AccountModels.RefreshTokenResModel> {
-    const user = await this.usersService.findByEmail(model.Email);
+    const user = await this.usersService.findByEmail(model.email);
     if (!user) {
       throw new AccountException(ErrorCodesEnum.USER_NOT_FOUND);
     }
@@ -131,7 +135,7 @@ export class AccountService {
 
   async GetAccessToken(user: User): Promise<string> {
     const accessToken = this.JwtService.sign({
-      Email: user.email,
+      email: user.email,
     } as AccountModels.JwtModel);
     return accessToken;
   }
@@ -139,7 +143,7 @@ export class AccountService {
   GetRefreshToken(user: User): string {
     const refreshToken = this.JwtService.sign(
       {
-        Email: user.email,
+        email: user.email,
       } as AccountModels.JwtModel,
       {
         expiresIn: this.Config.Auth.Jwt.RefreshTokenLifeSpan as any,
@@ -153,8 +157,8 @@ export class AccountService {
 
   GetCurrentUser(user: User): AccountModels.CurrentUser {
     const currentUser = {
-      Name: user.name,
-      Email: user.email,
+      name: user.name,
+      email: user.email,
     } as AccountModels.CurrentUser;
     return currentUser;
   }

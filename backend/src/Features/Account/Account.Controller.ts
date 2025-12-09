@@ -15,8 +15,8 @@ export class AccountController {
     @Body() SigninReqModel: AccountModels.SigninReqModel,
   ): Promise<AccountModels.SigninResModel> {
     return this.AccountService.Signin(
-      SigninReqModel.Email,
-      SigninReqModel.Password,
+      SigninReqModel.email,
+      SigninReqModel.password,
     );
   }
 
@@ -31,7 +31,7 @@ export class AccountController {
   @Post('refresh')
   @UseGuards(RefreshTokenGuard)
   @ApiBody({ type: AccountModels.RefreshTokenReqModel })
-  RefreshToken(
+  refreshToken(
     @Body() RefreshTokenReqModel: AccountModels.RefreshTokenReqModel,
   ): Promise<AccountModels.RefreshTokenResModel> {
     return this.AccountService.RefreshAccessToken(RefreshTokenReqModel);

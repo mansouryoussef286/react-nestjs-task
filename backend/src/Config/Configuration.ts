@@ -9,7 +9,7 @@ export default registerAs('Config', () => ({
   },
   Database: {
     Uri: process.env.DATABASE_URI ?? '',
-    Name: process.env.DATABASE_NAME ?? '',
+    name: process.env.DATABASE_NAME ?? '',
   },
   Auth: {
     EncryptionKey: process.env.AUTH_ENCRYPTION_KEY ?? '',
