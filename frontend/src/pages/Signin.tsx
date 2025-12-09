@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserServiceContext } from "../providers/userService.provider";
 import type { SigninResModel } from "../models/user.model";
-import { ApiContext } from "../providers/api.provider";
 
 
 const schema = z.object({
@@ -18,7 +18,6 @@ type FormData = z.infer<typeof schema>;
 export default function SigninPage() {
 	const navigate = useNavigate();
 	const { onSignin } = useContext(UserServiceContext)!;
-	const api = useContext(ApiContext)!;
 	const [serverError, setServerError] = useState<string | null>(null);
 
 	const {

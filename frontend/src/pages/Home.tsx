@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { UserServiceContext } from "../providers/userService.provider";
-import { ApiContext } from "../providers/api.provider";
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { user, onSignout } = useContext(UserServiceContext)!;
-  const api = useContext(ApiContext)!;
+
   const [profile, setProfile] = useState<string | null>(null);
 
   const GetPrivateInfo = async () => {
