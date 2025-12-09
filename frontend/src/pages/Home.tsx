@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import { UserServiceContext } from "../providers/userService.provider";
+import { UserServiceContext } from "../context/userService.provider";
 
 export default function HomePage() {
   const navigate = useNavigate();

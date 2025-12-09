@@ -4,7 +4,7 @@ import HomePage from "./pages/Home";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
 import LandingPage from "./pages/LandingPage";
-import { UserServiceProvider } from "./providers/userService.provider";
+import { UserServiceProvider } from "./context/userService.provider";
 
 export default function App() {
   return (

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { UserServiceContext } from "../providers/userService.provider";
+import { UserServiceContext } from "../context/userService.provider";
 import type { SigninResModel } from "../models/user.model";
 
 
