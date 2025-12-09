@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { api } from "../../api/api";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { UserServiceContext } from "../context/userService.provider";
-import type { SigninResModel } from "../models/user.model";
-
+import { UserServiceContext } from "../../context/userService.provider";
+import type { SigninResModel } from "../../models/user.model";
+import "./signin.scss";
 
 const schema = z.object({
 	email: z.email("Invalid email."),
@@ -43,24 +43,19 @@ export default function SigninPage() {
 	};
 
 	return (
-		<div style={{ maxWidth: 400, margin: "50px auto" }}>
+		<div className="wrap">
 			<h2>Signin</h2>
 
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} className="login-form">
 				<input {...register("email")} placeholder="email" />
-				<p style={{ color: "red" }}>{errors.email?.message}</p>
+				<p className="input-error">{errors.email?.message}</p>
 
 				<input type="password" {...register("password")} placeholder="password" />
-				<p style={{ color: "red" }}>{errors.password?.message}</p>
+				<p className="input-error">{errors.password?.message}</p>
 
 				{serverError && (
 					<p
-						style={{
-							color: "red",
-							fontWeight: "bold",
-							marginTop: "10px",
-							marginBottom: "10px",
-						}}
+						className="server-error"
 					>
 						{serverError}
 					</p>
@@ -71,7 +66,9 @@ export default function SigninPage() {
 			</form>
 
 			<br />
-			<button onClick={() => navigate("/signup")}>Don't have an account?</button>
+			<Link to="/signup" className="hint">Don't have an account?</Link>
 		</div>
 	);
 }
+
+

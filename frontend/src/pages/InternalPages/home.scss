@@ -1,0 +1,16 @@
+.page {
+  margin: 1em auto;
+  height: 100%;
+  width: 100%;
+  color: var(--text-color-primary);
+
+  display: flex;
+  flex-direction: column;
+  .title {
+    margin: 1em 0;
+  }
+
+  .info {
+    margin: 1em 0;
+  }
+}
