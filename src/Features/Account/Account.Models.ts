@@ -12,8 +12,10 @@ export namespace AccountModels {
   }
 
   export class SigninReqModel {
+    @IsEmail()
     @ApiProperty()
     Email!: string;
+    @MinLength(8)
     @ApiProperty()
     Password!: string;
   }
@@ -42,6 +44,16 @@ export namespace AccountModels {
     Password!: string;
   }
 
+  export class RefreshTokenReqModel {
+    @IsEmail()
+    @ApiProperty()
+    Email!: string;
+
+    @IsString()
+    @ApiProperty()
+    RefreshToken!: string;
+  }
+
   export class SigninResModel {
     constructor(
       public AccessToken: string,
@@ -51,6 +63,14 @@ export namespace AccountModels {
   }
 
   export class SignupResModel {
+    constructor(
+      public AccessToken: string,
+      public RefreshToken: string,
+      public CurrentUser: CurrentUser,
+    ) {}
+  }
+
+  export class RefreshTokenResModel {
     constructor(
       public AccessToken: string,
       public RefreshToken: string,

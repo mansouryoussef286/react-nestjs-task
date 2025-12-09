@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { AccountService } from '@App/Features/Account/Account.Service';
 import { AccountModels } from './Account.Models';
+import { RefreshTokenGuard } from '@App/Common/Auth/RefreshToken.Guard';
 
 @ApiTags('Account')
 @Controller('account')
@@ -25,5 +26,14 @@ export class AccountController {
     @Body() SignupReqModel: AccountModels.SignupReqModel,
   ): Promise<AccountModels.SignupResModel> {
     return this.AccountService.Signup(SignupReqModel);
+  }
+
+  @Post('refresh')
+  @UseGuards(RefreshTokenGuard)
+  @ApiBody({ type: AccountModels.RefreshTokenReqModel })
+  RefreshToken(
+    @Body() RefreshTokenReqModel: AccountModels.RefreshTokenReqModel,
+  ): Promise<AccountModels.RefreshTokenResModel> {
+    return this.AccountService.RefreshAccessToken(RefreshTokenReqModel);
   }
 }

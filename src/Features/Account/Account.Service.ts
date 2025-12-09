@@ -27,7 +27,7 @@ export class AccountService {
     password: string,
   ): Promise<AccountModels.SigninResModel> {
     const user: User | null = await this.usersService.findByEmail(email);
-    const signinResult = this.CanSignIn(user, password);
+    const signinResult = await this.CanSignIn(user, password);
     if (!signinResult.Success) {
       throw new AccountException(signinResult.ErrorMsg);
     }
@@ -69,14 +69,35 @@ export class AccountService {
     );
   }
 
-  CanSignIn(user: User | null, password: string) {
+  async RefreshAccessToken(
+    model: AccountModels.RefreshTokenReqModel,
+  ): Promise<AccountModels.RefreshTokenResModel> {
+    const user = await this.usersService.findByEmail(model.Email);
+    if (!user) {
+      throw new AccountException(ErrorCodesEnum.USER_NOT_FOUND);
+    }
+    // check if the saved refreshtoken is the same as in the request
+    // if not then revoke all sessions
+
+    const accessToken = await this.GetAccessToken(user);
+    const refreshToken = this.GetRefreshToken(user);
+    const currentUser = this.GetCurrentUser(user);
+
+    return new AccountModels.RefreshTokenResModel(
+      accessToken,
+      refreshToken,
+      currentUser,
+    );
+  }
+
+  async CanSignIn(user: User | null, password: string) {
     if (user == null) {
       return {
         Success: false,
         ErrorMsg: ErrorCodesEnum.USER_NOT_FOUND,
       };
     }
-    const PasswordMatched = this.passwordService.comparePassword(
+    const PasswordMatched = await this.passwordService.comparePassword(
       password,
       user.passwordHash,
     );
