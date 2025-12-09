@@ -12,7 +12,6 @@ export default registerAs('Config', () => ({
     name: process.env.DATABASE_NAME ?? '',
   },
   Auth: {
-    EncryptionKey: process.env.AUTH_ENCRYPTION_KEY ?? '',
     Jwt: {
       Key: process.env.AUTH_JWT_KEY ?? '',
       Lifespan: process.env.AUTH_ACCESS_TOKEN_LIFESPAN ?? '',

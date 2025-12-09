@@ -111,7 +111,7 @@ class Api {
 
   async Get<T>(url: string, params?: object): Promise<T | null> {
     const { data } = await this.axiosApi.get<T>(url, { params });
-    return data; // return fallback value instead of throwing
+    return data;
   }
 
   async Post<T>(url: string, body?: object): Promise<T | null> {

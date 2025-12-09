@@ -17,20 +17,4 @@ export class UsersRepository {
   async findOne(filter: FilterQuery<User>): Promise<User | null> {
     return this.userModel.findOne(filter).exec();
   }
-
-  async findById(id: string): Promise<User | null> {
-    return this.userModel.findById(id).exec();
-  }
-
-  async update(
-    filter: FilterQuery<User>,
-    data: Partial<User>,
-  ): Promise<User | null> {
-    return this.userModel.findOneAndUpdate(filter, data, { new: true }).exec();
-  }
-
-  async delete(filter: FilterQuery<User>): Promise<boolean> {
-    const res = await this.userModel.deleteOne(filter).exec();
-    return res.deletedCount > 0;
-  }
 }

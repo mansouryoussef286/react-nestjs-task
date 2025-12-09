@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./router/ProtectedRoute";
-import HomePage from "./pages/Home";
-import SignupPage from "./pages/Signup";
-import SigninPage from "./pages/Signin";
+import HomePage from "./pages/HomePage";
+import SignupPage from "./pages/SignupPage";
+import SigninPage from "./pages/SigninPage";
 import LandingPage from "./pages/LandingPage";
 import { UserServiceProvider } from "./context/userService.provider";
 
