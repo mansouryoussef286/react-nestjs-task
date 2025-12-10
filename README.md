@@ -117,7 +117,7 @@ Docker Compose: ports, volumes, and environment variables are configurable
 
 </details> 
 
-<details > 
+<details open> 
   <summary><h2>💬 User Flow Examples</h2></summary>
  
   - User submits signup form → Frontend sends POST /api/account/signup → Backend creates user in MongoDB → Returns JWT → Frontend stores token
@@ -126,6 +126,7 @@ Docker Compose: ports, volumes, and environment variables are configurable
    
   - User accesses protected route → Frontend attaches JWT (expired) → Backend invalidates → Returns requested `401 unauthorized` error
    → Frontend requests refreshing token using RefreshToken POST /api/account/refresh → Backend returns new token → Frontend attaches JWT (new valid) → Backend validates → Returns requested data 
+   <br/> <strong>*(test this flow in home page using invoke `api button` and check network tab in dev tools)<strong/>
 
 </details> 
 
