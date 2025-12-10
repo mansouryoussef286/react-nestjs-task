@@ -9,15 +9,20 @@ The project mimics real-world user authentication and session management.
 <summary><h2>✨ Features</h2></summary>
   
 - Frontend in React with SPA routing
-- Backend in NestJS with REST API
-- MongoDB for user data persistence
-- User authentication (JWT Bearer Auth)
-  - adding protected routes for authenticated users
+	- responsive view for mobile and desktop
+ 	- added a nav bar to test integrations with an external library (chakra ui)
+  - with client side validations using (zod)
   - adding protected pages in frontend 
-- Logging using Winston with daily rotational files
-- Rate limitting the api to avoid DOS attacks
-- Hashing passwords for extra security using `bcryptjs`
-- CORS setup for development and production
+- Backend in NestJS with REST API
+	- User authentication (JWT Bearer Auth)
+  		- adding protected routes for authenticated users
+    	- short lived access tokens + long lived refresh tokens
+	- Logging using Winston with daily rotational files
+	- Rate limitting the api to avoid DOS attacks
+	- Hashing passwords for extra security using `bcryptjs`
+ 	- api validations
+	- CORS setup for development and production
+- MongoDB for user data persistence
 - Dockerized frontend, backend, and database for easier deployment or testing
   
 </details>
@@ -75,13 +80,14 @@ The project is organized to separate concerns and make it easy to maintain both 
 <details open>
 
   <summary><h2>🚀 Getting Started</h2></summary>
+*Note: docker needs to be installed locally to run the application
 
   1- Clone the repository:
   
     git clone https://github.com/mansouryoussef286/react-nestjs-task.git
     cd react-nestjs-task
   
-  2- Build and run using Docker Compose: <span id = "#docker-build"></span>
+  2- Build and run using Docker Compose in cmd: <span id = "#docker-build"></span>
       to run in detach mode but show the backend logs
       
 	    docker-compose up -d --build && docker-compose logs -f backend
