@@ -107,16 +107,19 @@ Frontend: `.env.production` or `.env` for development
 
 Docker Compose: ports, volumes, and environment variables are configurable
 
+*Note that here i pushed the whole env file but in a prod setting we should push `.env.example` with dummy data and store the real env file securily
+
 </details> 
 
 <details > 
   <summary><h2>💬 User Flow Examples</h2></summary>
  
-  - User submits signup form → Frontend sends POST /api/auth/signup → Backend creates user in MongoDB → Returns JWT → Frontend stores token
+  - User submits signup form → Frontend sends POST /api/account/signup → Backend creates user in MongoDB → Returns JWT → Frontend stores token
   
   - User accesses protected route → Frontend attaches JWT → Backend validates → Returns requested data
    
-  - User accesses protected route → Frontend attaches JWT (expired) → Backend invalidates → Returns requested `401 unauthorized` error → Frontend requests refreshing token using RefreshToken → Backend returns new token → Frontend attaches JWT (new valid) → Backend validates → Returns requested data 
+  - User accesses protected route → Frontend attaches JWT (expired) → Backend invalidates → Returns requested `401 unauthorized` error
+   → Frontend requests refreshing token using RefreshToken POST /api/account/refresh → Backend returns new token → Frontend attaches JWT (new valid) → Backend validates → Returns requested data 
 
 </details> 
 
