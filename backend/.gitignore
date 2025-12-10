@@ -6,6 +6,7 @@
 # Logs
 logs
 *.log
+/-backen_-logs
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*

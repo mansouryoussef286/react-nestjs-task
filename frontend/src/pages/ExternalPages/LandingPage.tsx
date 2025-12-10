@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import "../InternalPages/home.scss";
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
