@@ -15,11 +15,11 @@ services:
     container_name: nest_backend
     restart: unless-stopped
     env_file:
-      - ./backend/.env
+      - ./backend/.env.production
     depends_on:
       - mongo
     ports:
-      - "3003:3000"
+      - "3005:3000"
     volumes:
       - ./-backend_logs:/app/StorageFolder/Logs
 
@@ -31,8 +31,6 @@ services:
       - backend
     ports:
       - "5173:80"
-    env_file:
-      - ./frontend/.env
 
 volumes:
   mongo-data:

@@ -1,10 +1,11 @@
 # Stage 1: Build frontend
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+# to run the prod script from package.json to include production env file
+RUN npm run build:prod 
 
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine

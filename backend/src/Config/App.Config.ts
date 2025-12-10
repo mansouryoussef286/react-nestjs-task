@@ -5,7 +5,6 @@ import type { ConfigType } from '@nestjs/config';
 export interface Config {
   Env: string;
   Server: {
-    Host: string;
     Port: number;
     FrontEndHost: string;
   };

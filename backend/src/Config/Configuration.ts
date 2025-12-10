@@ -5,7 +5,6 @@ const parseBool = (value: string | undefined): boolean =>
 export default registerAs('Config', () => ({
   Env: process.env.NODE_ENV ?? '',
   Server: {
-    Host: process.env.SERVER_HOST ?? '',
     Port: parseInt(process.env.SERVER_PORT ?? '3000', 10),
     FrontEndHost: process.env.SERVER_FRONTEND_HOST ?? '',
   },
