@@ -4,16 +4,14 @@ import { Config } from '@App/Config/App.Config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { LoggingService } from './Common/Logging/Logging.service';
 
 async function bootstrap() {
-  // Handle unhandled promise rejections globally
-  process.on('unhandledRejection', (reason, promise) => {
-    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  });
-
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
+  const loggingService = app.get(LoggingService);
+  loggingService.OnUnhandledExecptions();
   const config = configService.get<Config>('Config');
 
   app.setGlobalPrefix('api');

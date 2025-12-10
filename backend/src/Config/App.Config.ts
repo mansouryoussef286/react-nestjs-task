@@ -22,6 +22,20 @@ export interface Config {
       Audience: string;
     };
   };
+  Logging: {
+    Endpoints: {
+      LogRequests: boolean;
+      Folder: string;
+    };
+    InvalidSignins: {
+      LogRequests: boolean;
+      Folder: string;
+    };
+    Exceptions: {
+      LogRequests: boolean;
+      Folder: string;
+    };
+  };
 }
 
 @Injectable()

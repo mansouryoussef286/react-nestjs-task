@@ -1,4 +1,6 @@
 import { registerAs } from '@nestjs/config';
+const parseBool = (value: string | undefined): boolean =>
+  value?.toLowerCase() === 'true';
 
 export default registerAs('Config', () => ({
   Env: process.env.NODE_ENV ?? '',
@@ -18,6 +20,20 @@ export default registerAs('Config', () => ({
       Issuer: process.env.AUTH_JWT_ISSUER ?? '',
       Audience: process.env.AUTH_JWT_AUDIENCE ?? '',
       RefreshTokenLifeSpan: process.env.AUTH_REFRESH_TOKEN_LIFESPAN ?? '',
+    },
+  },
+  Logging: {
+    Endpoints: {
+      LogRequests: parseBool(process.env.LOGGING_ENDPOINTS_LOG_REQUESTS),
+      Folder: process.env.LOGGING_ENDPOINTS_FOLDER ?? '',
+    },
+    InvalidSignins: {
+      LogRequests: parseBool(process.env.LOGGING_INVALIDSIGNINS_LOG_REQUESTS),
+      Folder: process.env.LOGGING_INVALIDSIGNINS_FOLDER ?? '',
+    },
+    Exceptions: {
+      LogRequests: parseBool(process.env.LOGGING_EXCEPTIONS_LOG_REQUESTS),
+      Folder: process.env.LOGGING_EXCEPTIONS_FOLDER ?? '',
     },
   },
 }));
