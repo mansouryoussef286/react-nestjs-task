@@ -78,7 +78,7 @@ The project is organized to separate concerns and make it easy to maintain both 
 
   1- Clone the repository:
   
-    git clone [<repo-url>](https://github.com/mansouryoussef286/react-nestjs-task.git)
+    git clone https://github.com/mansouryoussef286/react-nestjs-task.git
     cd react-nestjs-task
   
   2- Build and run using Docker Compose: <span id = "#docker-build"></span>
