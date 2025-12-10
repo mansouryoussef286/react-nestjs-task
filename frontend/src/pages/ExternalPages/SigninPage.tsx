@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { UserServiceContext } from "../../context/userService.provider";
 import type { SigninResModel } from "../../models/user.model";
 import "./signin.scss";
+import { useErrorCode } from "../../hooks/useErrorCode";
 
 const schema = z.object({
 	email: z.email("Invalid email."),
@@ -18,6 +19,7 @@ type FormData = z.infer<typeof schema>;
 export default function SigninPage() {
 	const navigate = useNavigate();
 	const { onSignin } = useContext(UserServiceContext)!;
+	const { getMessage } = useErrorCode();
 	const [serverError, setServerError] = useState<string | null>(null);
 
 	const {
@@ -38,7 +40,7 @@ export default function SigninPage() {
 
 			navigate("/home");
 		} catch (err: any) {
-			setServerError(err.response?.data?.message || "signin failed");
+			setServerError(getMessage(err.response?.data?.message));
 		}
 	};
 

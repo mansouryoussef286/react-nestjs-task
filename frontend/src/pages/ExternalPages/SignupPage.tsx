@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { UserServiceContext } from "../../context/userService.provider";
 import type { SignupResModel } from "../../models/user.model";
 import "./signin.scss";
+import { useErrorCode } from "../../hooks/useErrorCode";
 const schema = z.object({
 	name: z.string().min(3, "name must be at least 3 chars."),
 	email: z.email("Invalid email."),
@@ -24,6 +25,7 @@ export default function SignupPage() {
 	const navigate = useNavigate();
 	const { onSignup } = useContext(UserServiceContext)!;
 	const [serverError, setServerError] = useState<string | null>(null);
+	const { getMessage } = useErrorCode();
 
 	const {
 		register,
@@ -43,7 +45,7 @@ export default function SignupPage() {
 
 			navigate("/home");
 		} catch (err: any) {
-			setServerError(err.response?.data?.message || "signup failed");
+			setServerError(getMessage(err.response?.data?.message));
 		}
 	};
 
