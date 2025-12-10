@@ -8,6 +8,7 @@ import SignupPage from "../ExternalPages/SignupPage";
 import SigninPage from "../ExternalPages/SigninPage";
 import ProtectedRoute from "../../router/ProtectedRoute";
 import HomePage from "./HomePage";
+import NotFoundPage from "./NotFoundPage";
 
 export default function AppWrapper() {
   const { user } = useContext(UserServiceContext)!;
@@ -30,6 +31,8 @@ export default function AppWrapper() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
+
       </Routes>
     </>
   );
